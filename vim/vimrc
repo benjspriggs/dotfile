@@ -1,0 +1,47 @@
+"a working-ish vimrc file for Benjamin Spriggs
+
+"map leader
+:let mapleader = "-"
+"remaps escape to jk
+:imap jk <Esc>
+"map gT and gt to Shift-Pgup/dn
+:noremap <S-PageUp> gt
+:noremap <S-PageDown> gT
+"map each tab to a leader+key, much like chrome or firefox
+:noremap <leader>1 1gt
+:noremap <leader>2 2gt
+:noremap <leader>3 3gt
+:noremap <leader>4 4gt
+:noremap <leader>5 5gt
+:noremap <leader>6 6gt
+:noremap <leader>7 7gt
+:noremap <leader>8 8gt
+:noremap <leader>9 9gt
+:noremap <leader>0 :tablast<cr>
+
+"Tab2Space coutesty of Metacosm, causes all tabs to go to spaces of a certain size
+:command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" ", len(submatch(0))*' . &ts . ')'
+"Space2Tab courtesy of Metacosm, causes all consecutive spaces of a size to go to tabs
+:command! -range=% -nargs=0 Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
+
+"Sets tab width across the document
+:function SetTabSize(size)
+:    execute ":silent! Space2Tab"
+:    let &l:tabstop = a:size
+:    let &l:shiftwidth = a:size
+:    execute ":silent! Tab2Space"
+:    setlocal et|retab
+:endfunction
+
+"greps all TODO items in the directory and displays them
+:function TODO()
+:    ! grep -nr 'TODO' *
+:endfunction
+:command TODO call TODO()
+
+"Set an alias for SetTabSize, can instead be called with :SetTab 5
+:command! -nargs=1 SetTab call s:SetTabSize(<f-args>)
+"Set the spacing to python standard
+:command SetPython call SetTabSize(4)
+"Set the spacing to ruby standard
+:command SetRuby call SetTabSize(2)
