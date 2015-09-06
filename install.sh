@@ -15,5 +15,5 @@ do
   old_path=$pre$( basename $f)
   rep_path=$DIR/$f
   mv -n $old_path $old_path\.bak
-  ln -ns $rep_path $old_path 2>/dev/null
+  ln -fns $rep_path $old_path 2>/dev/null
 done
