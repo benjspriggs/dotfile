@@ -125,7 +125,7 @@ mkcd () {
   cd "$1"
 }
 
-export GIT_HOME=/mnt/lo/benjspriggs/git
+export GIT_HOME=$HOME/git
 
 go_git () {
   cd $GIT_HOME
@@ -133,7 +133,7 @@ go_git () {
 
 # do a daily
 do_daily () {
-  cd "$GIT_HOME/dailies"
+  mkcd "$GIT_HOME/dailies"
   mkdir "$1"
   cd "$1"
   git init
