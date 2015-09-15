@@ -118,14 +118,14 @@ fi
 
 # java_home
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+# git_home
+export GIT_HOME=/mnt/lo/benjspriggs/git
 
 # make dir and enter it
 mkcd () {
   mkdir "$1"
   cd "$1"
 }
-
-export GIT_HOME=$HOME/git
 
 go_git () {
   cd $GIT_HOME
