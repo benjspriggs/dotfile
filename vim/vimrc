@@ -1,5 +1,7 @@
 "a working-ish vimrc file for Benjamin Spriggs
 
+:set ruler rnu nu
+
 "map leader
 :let mapleader = "-"
 "remaps escape to jk
