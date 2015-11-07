@@ -1,7 +1,10 @@
 "a working-ish vimrc file for Benjamin Spriggs
 
+:set t_RV=
 :set ruler rnu nu
-
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
 "map leader
 :let mapleader = "-"
 "remaps escape to jk
