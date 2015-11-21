@@ -129,6 +129,7 @@ mkcd () {
 
 go_git () {
   cd $GIT_HOME
+  cd "$1"
 }
 
 # do a daily
@@ -146,5 +147,4 @@ lazy_commit () {
 }
 
 export PATH=$HOME/bin:$PATH
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
