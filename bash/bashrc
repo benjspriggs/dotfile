@@ -132,6 +132,10 @@ go_git () {
   cd "$1"
 }
 
+sib () {
+  cd "../$1"
+}
+
 # do a daily
 do_daily () {
   mkcd "$GIT_HOME/dailies"
