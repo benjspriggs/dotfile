@@ -116,11 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# java_home
-export JAVA_HOME=/usr/lib/jvm/java-7-oracle
-# git_home
-export GIT_HOME=/mnt/lo/benjspriggs/git
-
 # make dir and enter it
 mkcd () {
   mkdir "$1"
@@ -150,5 +145,3 @@ lazy_commit () {
   git commit -m "$1"
 }
 
-export PATH=$HOME/bin:$PATH
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
