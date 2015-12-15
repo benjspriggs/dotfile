@@ -146,5 +146,5 @@ lazy_commit () {
 }
 
 # add paths
-current_dir="$(dirname "$0")"
-"$current_dir/paths.sh"
+current_dir="${BASH_SOURCE%/*}"
+source $current_dir/paths.sh
