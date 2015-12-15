@@ -1,2 +1,2 @@
 *.swp # Ignore swap files
-bash/paths.sh # Ignore paths used for implementation-specific scripts
+*bash/paths.sh # Ignore paths used for implementation-specific scripts
