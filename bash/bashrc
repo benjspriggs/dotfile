@@ -145,3 +145,6 @@ lazy_commit () {
   git commit -m "$1"
 }
 
+# add paths
+current_dir="$(dirname "$0")"
+"$current_dir/paths.sh"
