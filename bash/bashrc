@@ -145,6 +145,12 @@ lazy_commit () {
   git commit -m "$1"
 }
 
+extract_here () {
+  mkdir "$2"
+  tar xf $1 -C $2
+}
+
 # add paths
 current_dir="${BASH_SOURCE%/*}"
 source $current_dir/paths.sh
+alias go_grade="echo -e 'Going to grade on the linux host for PSU CS...'; ssh linux -t 'cd cs202-grading; bash'" 
