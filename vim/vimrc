@@ -2,6 +2,9 @@
 
 :set t_RV=
 :set ruler rnu nu
+"set up tmux slime
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
