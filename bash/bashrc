@@ -145,6 +145,8 @@ lazy_commit () {
   git commit -m "$1"
 }
 
+# add completions for czt Z syntax checker
+complete -f -X '!*.tex' cztcheck
 # add paths
 current_dir="${BASH_SOURCE%/*}"
 source $current_dir/paths.sh
