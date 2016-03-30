@@ -160,6 +160,8 @@ view_tex () {
   evince ${1/\.tex/\.pdf}
 }
 
-# add paths
+# add completions for czt Z syntax checker
+complete -f -X '!*.tex' cztcheck
 current_dir="${BASH_SOURCE%/*}"
+# add paths
 source $current_dir/paths.sh
