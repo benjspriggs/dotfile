@@ -162,6 +162,8 @@ view_tex () {
 
 # add completions for czt Z syntax checker
 complete -f -X '!*.tex' cztcheck
+# add completions for tex functions
+complete -f -X '!*.tex' view_tex
 current_dir="${BASH_SOURCE%/*}"
 # add paths
 source $current_dir/paths.sh
