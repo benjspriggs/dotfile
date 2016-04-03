@@ -164,6 +164,10 @@ view_tex () {
 complete -f -X '!*.tex' cztcheck
 # add completions for tex functions
 complete -f -X '!*.tex' view_tex
-current_dir="${BASH_SOURCE%/*}"
+# xclip to clipboard function
+xclip-cb () {
+  xclip -selection clipboard -i $@
+}
 # add paths
+current_dir="${BASH_SOURCE%/*}"
 source $current_dir/paths.sh
