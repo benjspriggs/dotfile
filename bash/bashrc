@@ -168,6 +168,9 @@ complete -f -X '!*.tex' view_tex
 xclip-cb () {
   xclip -selection clipboard -i $@
 }
+# run all python unittests in a directory
+alias pyut_d="python -m unittest discover"
+
 # add paths
 current_dir="${BASH_SOURCE%/*}"
 source $current_dir/paths.sh
