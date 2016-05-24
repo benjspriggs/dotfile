@@ -172,6 +172,7 @@ xclip-cb () {
 
 # run all python unittests in a directory
 alias pyut_d="python -m unittest discover"
+alias g="git"
 
 # add paths
 current_dir="${BASH_SOURCE%/*}"
