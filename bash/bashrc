@@ -150,11 +150,6 @@ extract_here () {
   tar xf $1 -C $2
 }
 
-go_grade () {
-  echo -e 'Going to grade on the linux host for PSU CS...'
-  ssh linux -t "cd grading-folder; bash"
-}
-
 view_tex () {
   pdflatex $1
   evince ${1/\.tex/\.pdf}
