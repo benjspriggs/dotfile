@@ -9,7 +9,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 "map leader
-:let mapleader = "-"
+:let mapleader = ","
 "remaps escape to jk
 :imap jk <Esc>
 "map gT and gt to Shift-Pgup/dn
