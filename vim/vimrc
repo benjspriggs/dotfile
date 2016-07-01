@@ -11,7 +11,11 @@ let g:slime_paste_file = tempname()
 execute pathogen#infect()
 
 set t_RV=
-set showmatch ignorecase smartcase incsearch hidden smarttab backspace=indent,eol,start hls cul ruler rnu nu
+set showmatch ignorecase smartcase
+set incsearch hidden smarttab
+set backspace=indent,eol,start
+set hls cul ruler
+set rnu nu
 filetype plugin indent on
 set foldmethod=syntax
 
