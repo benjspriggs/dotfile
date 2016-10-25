@@ -144,7 +144,7 @@ do_daily () {
 # lazy add and commit with message
 lazy_commit () {
   git add .
-  git commit -m "$1"
+  git commit -m "'$*'"
 }
 
 extract_here () {
