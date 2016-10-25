@@ -116,6 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export EDITOR=vim
+export VISUAL="$EDITOR"
 # make dir and enter it
 mkcd () {
   mkdir "$1"
@@ -174,3 +176,5 @@ alias gg="go_git"
 current_dir="${BASH_SOURCE%/*}"
 source $current_dir/paths.sh
 alias go_grade="echo -e 'Going to grade on the linux host for PSU CS...'; ssh linux -t 'cd grading-folder; bash'" 
+
+alias supg="sudo apt-get update && sudo apt-get upgrade"
