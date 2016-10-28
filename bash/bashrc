@@ -178,3 +178,15 @@ source $current_dir/paths.sh
 alias go_grade="echo -e 'Going to grade on the linux host for PSU CS...'; ssh linux -t 'cd grading-folder; bash'" 
 
 alias supg="sudo apt-get update && sudo apt-get upgrade"
+
+# opening a subshell for testing something
+wonder () {
+	f=${1:-test}
+	# open subshell
+	bash --rcfile <(
+		echo "mkdir -p "$f" || rm -rf "$f/";
+		cd "$f";
+		PS1='testing subshell $ ';"
+	) -i
+	rm -rf "$f" # clean up
+}
