@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+  # We have color support; assume it's compliant with Ecma-48
+  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+  # a case would tend to support setf rather than setaf.)
+  color_prompt=yes
     else
-	color_prompt=
+  color_prompt=
     fi
 fi
 
@@ -148,8 +148,21 @@ lazy_commit () {
 }
 
 extract_here () {
-  mkdir "$2"
-  tar xf $1 -C $2
+  ARCHIVE="$1"
+  NAME="${2:-"${ARCHIVE%%.*}"}"
+  # extract the archive to a folder
+  echo "Extracting archive $ARCHIVE..."
+  if [[ "$ARCHIVE" =~ \.zip$ ]]; then
+    unzip "$ARCHIVE" -d "$NAME"
+  elif [[ "$ARCHIVE" =~ \.tar || $"$ARCHIVE" =~ \.gz$ || "$ARCHIVE" =~ \.tgz || "$ARCHIVE" =~ \.bz2$ ]]; then
+    tar xvf "$ARCHIVE" -C "$NAME"
+  elif [[ "$ARCHIVE" =~ \.rar$ ]]; then
+    unrar e "$ARCHIVE" "$NAME"
+  else
+    echo -e "Archive format of \"$ARCHIVE\" not recognized. \nMust be a zip, tar, bz2, or gz."
+    rm -d "$NAME"
+    exit 1
+  fi
 }
 
 view_tex () {
@@ -181,13 +194,13 @@ alias supg="sudo apt-get update && sudo apt-get upgrade"
 
 # opening a subshell for testing something
 wonder () {
-	f=${1:-`mktemp -d`}
+  f=${1:-`mktemp -d`}
 
-	# open subshell
-	bash --rcfile <(
-		echo "mkdir -p "$f" || rm -rf "$f/";
-		cd "$f";
-		PS1='testing subshell $ ';"
-	) -i
-	rm -rf "$f" # clean up
+  # open subshell
+  bash --rcfile <(
+    echo "mkdir -p "$f" || rm -rf "$f/";
+    cd "$f";
+    PS1='testing subshell $ ';"
+  ) -i
+  rm -rf "$f" # clean up
 }
