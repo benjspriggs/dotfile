@@ -63,3 +63,5 @@ command! -nargs=1 SetTab call s:SetTabSize(<f-args>)
 command SetPython call SetTabSize(4)
 "Set the spacing to ruby standard
 command SetRuby call SetTabSize(2)
+"Set the spacing to a more compact
+command SetCompact call SetTabSize(2)

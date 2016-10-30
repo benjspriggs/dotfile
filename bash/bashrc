@@ -181,7 +181,8 @@ alias supg="sudo apt-get update && sudo apt-get upgrade"
 
 # opening a subshell for testing something
 wonder () {
-	f=${1:-test}
+	f=${1:-`mktemp -d`}
+
 	# open subshell
 	bash --rcfile <(
 		echo "mkdir -p "$f" || rm -rf "$f/";
