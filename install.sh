@@ -4,8 +4,7 @@
 # the current user's home directory
 
 echo '#!/bin/bash
-$GIT_HOME=""
-$BASH_RC_HOME=""' > ./paths.sh
+GIT_HOME="" ' > ~/paths.sh
 
 all=( 'bash/bashrc' 'vim/viminfo' 'vim/vimrc' )
 # move each of the files in the
