@@ -19,8 +19,6 @@ set rnu nu
 filetype plugin indent on
 set foldmethod=syntax
 
-"remaps escape to jk
-imap jk <Esc>
 "map gT and gt to Shift-Pgup/dn
 noremap <S-PageUp> gT
 noremap <S-PageDown> gt

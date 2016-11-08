@@ -161,7 +161,6 @@ extract_here () {
   else
     echo -e "Archive format of \"$ARCHIVE\" not recognized. \nMust be a zip, tar, bz2, or gz."
     rm -d "$NAME"
-    exit 1
   fi
 }
 
