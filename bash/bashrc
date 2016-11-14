@@ -209,6 +209,8 @@ gh () {
     return 1
   fi
 
+  [[ -d "$2" ]] || return 1
+
   if [[ -z "$2" ]] && [[ "$1" =~ : ]]; then
     git clone "$1"
   elif [[ ! -z "$2" ]] && [[ ! "$1" =~ : ]]; then
