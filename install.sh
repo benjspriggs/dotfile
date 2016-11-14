@@ -6,7 +6,7 @@
 echo '#!/bin/bash
 GIT_HOME="" ' > ~/paths.sh
 
-all=( 'bash/bashrc' 'vim/viminfo' 'vim/vimrc' )
+all=( 'bash/bashrc' 'bash/bash_alias' 'vim/viminfo' 'vim/vimrc' )
 # move each of the files in the
 # directory to backup files
 # TODO: allow merge between existing files and repo files
