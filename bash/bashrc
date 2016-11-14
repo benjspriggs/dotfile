@@ -183,16 +183,8 @@ xclip-cb () {
   xclip -selection clipboard -i $@
 }
 
-# run all python unittests in a directory
-alias pyut_d="python -m unittest discover"
-alias g="git"
-alias gg="go_git"
-
 # add paths
 source ~/paths.sh
-
-alias go_grade="echo -e 'Going to grade on the linux host for PSU CS...'; ssh linux -t 'cd grading-folder; bash'" 
-alias supg="sudo apt-get update && sudo apt-get upgrade"
 
 # opening a subshell for testing something
 wonder () {
@@ -205,4 +197,22 @@ wonder () {
   PS1='testing subshell $ ';"
   ) -i
   rm -rf "$f" # clean up
+}
+
+# clone something from github
+gh () {
+  if [[ -z "$1" ]]; then
+    >&2 echo "gh [repo] [folder]"
+    return 1
+  fi
+
+  if [[ -z "$2" ]] && [[ "$1" =~ : ]]; then
+    git clone "$1"
+  elif [[ ! -z "$2" ]] && [[ ! "$1" =~ : ]]; then
+    git clone https://github.com/"$1"
+  elif [[ -z "$2" ]] && [[ ! "$1" =~ : ]]; then
+    git clone https://github.com/"$1"
+  else
+    git clone https://github.com/"$1" "$2"
+  fi
 }
