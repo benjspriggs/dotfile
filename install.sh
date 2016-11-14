@@ -3,9 +3,13 @@
 # install the current dotfiles to 
 # the current user's home directory
 
-[[ -z ~/paths.sh ]] && echo '#!/bin/bash
+if [[ ! -e ~/paths.sh ]]; then
+  echo "#!/bin/bash
 # Make sure GIT_HOME is a fully expanded path
-GIT_HOME="" ' > ~/paths.sh
+GIT_HOME=\"$path\"" > ~/paths.sh
+  vim ~/paths.sh
+fi
+
 
 all=( 'bash/bashrc' 'bash/bash_aliases' 'vim/viminfo' 'vim/vimrc' )
 # move each of the files in the
