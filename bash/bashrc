@@ -116,8 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# author::Benjamin Spriggs
+
 export EDITOR=vim
 export VISUAL="$EDITOR"
+
 # make dir and enter it
 mkcd () {
   mkdir "$1"
@@ -202,7 +205,7 @@ wonder () {
 # clone something from github
 gh () {
   if [[ -z "$1" ]]; then
-    >&2 echo "gh [repo] [folder]"
+    >&2 echo -e "Usage: \tgh [repo] [folder]\n\t[repo] can be a fully qualified name, or the short name\n\t[folder] is optional"
     return 1
   fi
 
