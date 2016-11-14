@@ -11,7 +11,7 @@ let g:slime_paste_file = tempname()
 execute pathogen#infect()
 
 set t_RV=
-set showmatch ignorecase smartcase
+set showmatch showcmd ignorecase smartcase
 set incsearch hidden smarttab
 set backspace=indent,eol,start
 set hls cul ruler
