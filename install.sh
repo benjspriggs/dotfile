@@ -13,8 +13,8 @@ all=( 'bash/bashrc' 'bash/bash_alias' 'vim/viminfo' 'vim/vimrc' )
 DIR=$(pwd)
 
 gh () {
-  [[ ! -e "$2" ]] || return 1
-  git clone https://github.com/"$1" "$2"
+  [[ ! -e "$2"/"$(basename $1)" ]] || return 1
+  git clone https://github.com/"$1" "$2"/"$(basename $1)"
 }
 
 for f in ${all[@]}
@@ -31,8 +31,12 @@ done
   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 # install vim sline
-gh jpalardy/vim-slime ~/.vim/bundle/vim-slime
+gh jpalardy/vim-slime ~/.vim/bundle
 # install vim table mode
-gh dhruvasagar/vim-table-mode ~/.vim/bundle/vim-table-mode
+gh dhruvasagar/vim-table-mode ~/.vim/bundle
 # install ccimpl.vim
-gh vim-scripts/ccimpl.vim ~/.vim/plugin/ccimpl
+gh vim-scripts/ccimpl.vim ~/.vim/plugin
+# install surround.vim
+gh tpope/vim-surround ~/.vim/bundle
+# install vim-easy-align
+gh junegunn/vim-easy-align ~/.vim/bundle
