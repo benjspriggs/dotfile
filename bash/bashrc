@@ -220,3 +220,13 @@ gh () {
   fi
 }
 
+# strip prefixes from
+# filenames in the current directory
+strip_prefix() {
+  # requires prefix to strip
+  [[ -z "$1" ]] && exit 1
+
+  for file in *;
+    do mv "$file" "${file#"$1"}";
+  done
+}
