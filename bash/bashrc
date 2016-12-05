@@ -176,10 +176,13 @@ view_tex () {
   evince "${1/\.tex/\.pdf}"
 }
 
-# add completions for czt Z syntax checker
-complete -f -X '!*.tex' cztcheck
-# add completions for tex functions
-complete -f -X '!*.tex' view_tex
+# completions
+# czt Z syntax checker
+compgen -f -X '!*.tex' cztcheck
+# tex functions
+compgen -f -X '!*.tex' view_tex
+# sib
+compgen -W "$(ls ..)" sib
 
 # xclip to clipboard function
 xclip-cb () {
