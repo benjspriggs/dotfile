@@ -11,7 +11,7 @@ GIT_HOME=\"$path\"" > ~/paths.sh
 fi
 
 
-all=( 'bash/bashrc' 'bash/bash_aliases' 'vim/viminfo' 'vim/vimrc' )
+all=( 'bash/bashrc' 'bash/bash_aliases' 'vim/viminfo' 'vim/vimrc' 'tmux/tmux.conf' )
 # move each of the files in the
 # directory to backup files
 # TODO: allow merge between existing files and repo files
@@ -27,8 +27,10 @@ do
   pre=$HOME/.
   old_path=$pre$( basename $f )
   rep_path=$DIR/$f
-  mv -n $old_path $old_path\.bak
-  ln -fns $rep_path $old_path 2>/dev/null
+  # echo "Backing up '$old_path'..."
+  # mv -n $old_path $old_path\.bak
+  echo "Linking up '$old_path' to '$rep_path'..."
+  ln -fns $rep_path $old_path
 done
 
 # install pathogen
@@ -45,3 +47,5 @@ gh vim-scripts/ccimpl.vim ~/.vim/plugin
 gh tpope/vim-surround ~/.vim/bundle
 # install vim-easy-align
 gh junegunn/vim-easy-align ~/.vim/bundle
+# install tmux-ressurect
+gh tmux-plugins/tmux-resurrect ~/.tmux/plugins
