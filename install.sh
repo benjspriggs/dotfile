@@ -5,8 +5,8 @@
 
 if [[ ! -e ~/paths.sh ]]; then
   echo "#!/bin/bash
-# Make sure GIT_HOME is a fully expanded path
-GIT_HOME=\"$path\"" > ~/paths.sh
+  # Make sure GIT_HOME is a fully expanded path
+  GIT_HOME=\"$path\"" > ~/paths.sh
   vim ~/paths.sh
 fi
 
@@ -33,10 +33,15 @@ do
   ln -fns $rep_path $old_path
 done
 
+# install zsh
+sudo apt-get install -y zsh
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # install pathogen
 [[ ! -e ~/.vim/autoload/pathogen.vim ]] && mkdir -p ~/.vim/autoload ~/.vim/bundle &&
   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
+## VIM
 # install vim sline
 gh jpalardy/vim-slime ~/.vim/bundle
 # install vim table mode
@@ -47,5 +52,7 @@ gh vim-scripts/ccimpl.vim ~/.vim/plugin
 gh tpope/vim-surround ~/.vim/bundle
 # install vim-easy-align
 gh junegunn/vim-easy-align ~/.vim/bundle
-# install tmux-ressurect
-gh tmux-plugins/tmux-resurrect ~/.tmux/plugins
+
+## TMUX
+# install tmux-plugin-manager
+gh tmux-plugins/tpm ~/.tmux/plugins
