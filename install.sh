@@ -11,7 +11,7 @@ if [[ ! -e ~/paths.sh ]]; then
 fi
 
 
-all=( 'bash/bashrc' 'bash/bash_aliases' 'vim/viminfo' 'vim/vimrc' 'tmux/tmux.conf' )
+all=( 'bash/bashrc' 'bash/bash_aliases' 'vim/viminfo' 'vim/vimrc' 'tmux/tmux.conf' 'git/gitconfig' )
 # move each of the files in the
 # directory to backup files
 # TODO: allow merge between existing files and repo files
@@ -22,13 +22,14 @@ gh () {
   git clone https://github.com/"$1" "$2"/"$(basename $1)"
 }
 
+# link and copy files around in home
 for f in ${all[@]}
 do
   pre=$HOME/.
   old_path=$pre$( basename $f )
   rep_path=$DIR/$f
-  # echo "Backing up '$old_path'..."
-  # mv -n $old_path $old_path\.bak
+  echo "Backing up '$old_path'..."
+  mv -n $old_path $old_path\.bak
   echo "Linking up '$old_path' to '$rep_path'..."
   ln -fns $rep_path $old_path
 done
