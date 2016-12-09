@@ -1,1 +1,17 @@
-# this is the zsh file
+# zshrc
+# Benjamin Spriggs
+plugins=(
+  autopep8
+  cabal
+  colorize
+  copybuffer
+  copydir
+  copyfile
+  extract
+  history-substring-search
+  jsontools
+  python
+  pylint
+  textastic
+  tmux
+)

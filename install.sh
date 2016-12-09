@@ -34,6 +34,8 @@ do
   ln -fns $rep_path $old_path
 done
 
+# install gitk and git-gui
+sudo apt-get install -y gitk git-gui
 # install zsh
 sudo apt-get install -y zsh
 # install oh-my-zsh
