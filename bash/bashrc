@@ -176,10 +176,13 @@ view_tex () {
   evince "${1/\.tex/\.pdf}"
 }
 
-# add completions for czt Z syntax checker
-complete -f -X '!*.tex' cztcheck
-# add completions for tex functions
-complete -f -X '!*.tex' view_tex
+# completions
+# czt Z syntax checker
+compgen -f -X '!*.tex' cztcheck
+# tex functions
+compgen -f -X '!*.tex' view_tex
+# sib
+compgen -W "$(ls ..)" sib
 
 # xclip to clipboard function
 xclip-cb () {
@@ -209,8 +212,11 @@ gh () {
     return 1
   fi
 
+  local default_prefix='git@github.com:'
+
+  # clone based on arguments
   if [[ -z "$2" ]] && [[ "$1" =~ : ]]; then
-    git clone "$1"
+    git clone $default_prefix"$1"
   elif [[ ! -z "$2" ]] && [[ ! "$1" =~ : ]]; then
     git clone https://github.com/"$1"
   elif [[ -z "$2" ]] && [[ ! "$1" =~ : ]]; then
@@ -220,3 +226,13 @@ gh () {
   fi
 }
 
+# strip prefixes from
+# filenames in the current directory
+strip_prefix() {
+  # requires prefix to strip
+  [[ -z "$1" ]] && exit 1
+
+  for file in *;
+    do mv "$file" "${file#"$1"}";
+  done
+}

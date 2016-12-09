@@ -10,6 +10,13 @@ let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
 execute pathogen#infect()
 
+"set up easy-align
+"Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 set t_RV=
 set showmatch showcmd ignorecase smartcase
 set incsearch hidden smarttab
