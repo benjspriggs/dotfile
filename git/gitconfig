@@ -1,3 +1,8 @@
+[user]
+	name = Benjamin Spriggs
+	email = benjspriggs@sprico.com
+[core]
+	excludesfile = ~/.gitignore
 [alias]
 	st = status
 	visual = !gitk
