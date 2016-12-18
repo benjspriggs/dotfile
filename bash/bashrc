@@ -184,17 +184,25 @@ _tex_complete(){
   COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
 }
 complete -F _tex_complete cztcheck view_tex
+
+_complete_in_folder(){
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  local opts="$(
+    for l in `ls -d "$(realpath $1)"/*`; 
+    do 
+      bn="$(basename $l)"
+      [[ "$l" != "$bn" ]] && echo "$bn"
+    done)"
+  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+}
 # sib
 _sib(){
-  local cur="${COMP_WORDS[COMP_CWORD]}"
-  local opts="$(find .. -maxdepth 1 -type d -not -path ../"$(basename $PWD)" -not -path .. | cut -f2 -d'/')"
-  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+  _complete_in_folder ..
 }
 complete -F _sib sib
 # go_git
 _go_git(){
-  local cur="${COMP_WORDS[COMP_CWORD]}"
-  COMPREPLY=( $(compgen -W "$(ls -d "$GIT_HOME")" -- "${cur}") )
+  _complete_in_folder "$GIT_HOME"
 }
 complete -F _go_git go_git gg
 
