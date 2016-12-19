@@ -15,3 +15,4 @@ plugins=(
   textastic
   tmux
 )
+# more functions

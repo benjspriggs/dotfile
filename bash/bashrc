@@ -188,7 +188,7 @@ complete -F _tex_complete cztcheck view_tex
 _complete_in_folder(){
   local cur="${COMP_WORDS[COMP_CWORD]}"
   local opts="$(
-    for l in `find "$1" -maxdepth 1 -type d`; 
+    for l in `find "$(realpath $1)" -maxdepth 1 -type d`; 
     do 
       bn="$(basename $l)"
       [[ "$l" != "$bn" ]] && echo "$bn"
