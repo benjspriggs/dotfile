@@ -1,5 +1,5 @@
 # zshrc
-# Benjamin Spriggs
+# author::Benjamin Spriggs
 plugins=(
   autopep8
   cabal
@@ -15,4 +15,143 @@ plugins=(
   textastic
   tmux
 )
-# more functions
+
+# add paths
+source ~/paths.sh
+
+export EDITOR=vim
+export VISUAL="$EDITOR"
+
+## BEGIN FUNCTIONS
+# make dir and enter it
+mkcd () {
+  mkdir "$1"
+  cd "$1"
+}
+
+go_git () {
+  cd $GIT_HOME
+  cd "$*"
+}
+
+sib () {
+  cd "../$1"
+}
+
+# do a daily
+do_daily () {
+  mkcd "$GIT_HOME/dailies"
+  mkdir "$1"
+  cd "$1"
+  git init
+}
+
+# lazy add and commit with message
+lazy_commit () {
+  git add .
+  git commit -m "$*"
+}
+
+extract_here () {
+  ARCHIVE="$1"
+  NAME="${2:-"${ARCHIVE%%.*}"}"
+  # extract the archive to a folder
+  echo "Extracting archive $ARCHIVE..."
+  if [[ "$ARCHIVE" =~ \.zip$ ]]; then
+    unzip "$ARCHIVE" -d "$NAME"
+  elif [[ "$ARCHIVE" =~ \.tar || $"$ARCHIVE" =~ \.gz$ || "$ARCHIVE" =~ \.tgz || "$ARCHIVE" =~ \.bz2$ ]]; then
+    tar xvf "$ARCHIVE" -C "$NAME"
+  elif [[ "$ARCHIVE" =~ \.rar$ ]]; then
+    unrar e "$ARCHIVE" "$NAME"
+  else
+    echo -e "Archive format of \"$ARCHIVE\" not recognized. \nMust be a zip, tar, bz2, or gz."
+    rm -d "$NAME"
+  fi
+}
+
+view_tex () {
+  if [[ ! $1 =~ .tex$ ]] || [ ! -f "$1" ]; then
+    >&2 echo "view_tex [.tex file]"
+    return 1
+  fi
+  pdflatex "$1"
+  evince "${1/\.tex/\.pdf}"
+}
+
+# completions
+# tex functions
+_tex_complete(){
+  # local cur="${COMP_WORDS[COMP_CWORD]}"
+  # local opts="$(ls *.tex)"
+  # COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+}
+complete -F _tex_complete cztcheck view_tex
+
+_complete_in_folder(){
+  # local cur="${COMP_WORDS[COMP_CWORD]}"
+  # local opts="$(
+  #   for l in `find "$(realpath $1)" -maxdepth 1 -type d`; 
+  #   do 
+  #     bn="$(basename $l)"
+  #     [[ "$l" != "$bn" ]] && echo "$bn"
+  #   done)"
+  # COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+}
+# sib
+_sib(){
+  _complete_in_folder ..
+}
+# go_git
+_go_git(){
+  _complete_in_folder "$GIT_HOME"
+}
+
+# xclip to clipboard function
+xclip-cb () {
+  xclip -selection clipboard -i $@
+}
+
+# opening a subshell for testing something
+wonder () {
+  f=${1:-`mktemp -d`}
+
+  # open subshell
+  bash --rcfile <(
+  echo "mkdir -p "$f" || rm -rf "$f/";
+  cd "$f";
+  PS1='testing subshell $ ';"
+  ) -i
+  rm -rf "$f" # clean up
+}
+
+# clone something from github
+gh () {
+  if [[ -z "$1" ]]; then
+    >&2 echo -e "Usage: \tgh [repo] [folder]\n\t[repo] can be a fully qualified name, or the short name\n\t[folder] is optional"
+    return 1
+  fi
+
+  local default_prefix='git@github.com:'
+
+  # clone based on arguments
+  if [[ -z "$2" ]] && [[ "$1" =~ : ]]; then
+    git clone $default_prefix"$1"
+  elif [[ ! -z "$2" ]] && [[ ! "$1" =~ : ]]; then
+    git clone https://github.com/"$1"
+  elif [[ -z "$2" ]] && [[ ! "$1" =~ : ]]; then
+    git clone https://github.com/"$1"
+  else
+    git clone https://github.com/"$1" "$2"
+  fi
+}
+
+# strip prefixes from
+# filenames in the current directory
+strip_prefix() {
+  # requires prefix to strip
+  [[ -z "$1" ]] && exit 1
+
+  for file in *;
+    do mv "$file" "${file#"$1"}";
+  done
+}

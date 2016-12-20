@@ -118,9 +118,13 @@ fi
 
 # author::Benjamin Spriggs
 
+# add paths
+source ~/paths.sh
+
 export EDITOR=vim
 export VISUAL="$EDITOR"
 
+## BEGIN FUNCTIONS
 # make dir and enter it
 mkcd () {
   mkdir "$1"
@@ -210,9 +214,6 @@ complete -F _go_git go_git gg
 xclip-cb () {
   xclip -selection clipboard -i $@
 }
-
-# add paths
-source ~/paths.sh
 
 # opening a subshell for testing something
 wonder () {

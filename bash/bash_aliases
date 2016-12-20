@@ -4,6 +4,6 @@
 alias pyut_d="python -m unittest discover"
 alias g="git"
 alias gg="go_git"
+alias lc="lazy_commit"
 alias go_grade="echo -e 'Going to grade on the linux host for PSU CS...'; ssh linux -t 'cd grading-folder; bash'" 
 alias supg="sudo apt-get update && sudo apt-get upgrade"
-
