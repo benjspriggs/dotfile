@@ -11,7 +11,15 @@ if [[ ! -e ~/paths.sh ]]; then
 fi
 
 
-all=( 'bash/bashrc' 'bash/bash_aliases' 'vim/viminfo' 'vim/vimrc' 'tmux/tmux.conf' 'git/gitconfig' )
+all=( 
+'bash/bashrc'
+'bash/bash_aliases'
+'vim/viminfo'
+'vim/vimrc'
+'tmux/tmux.conf'
+'git/gitconfig'
+'zsh/zshrc'
+)
 # move each of the files in the
 # directory to backup files
 # TODO: allow merge between existing files and repo files
