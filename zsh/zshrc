@@ -29,7 +29,7 @@ DISABLE_AUTO_UPDATE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -168,21 +168,8 @@ view_tex () {
 # completions
 # tex functions
 compdef '_files -g "*.tex"' cztcheck view_tex
-_complete_in_folder(){
-  # local cur="${COMP_WORDS[COMP_CWORD]}"
-  # local opts="$(
-  #   for l in `find "$(realpath $1)" -maxdepth 1 -type d`; 
-  #   do 
-  #     bn="$(basename $l)"
-  #     [[ "$l" != "$bn" ]] && echo "$bn"
-  #   done)"
-  # COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
-}
-# sib
-_sib(){
-  _complete_in_folder ..
-}
-# compdef '_path_files -g "../*"' sib
+compdef '_path_files -/ -W $(dirname $PWD)' sib
+compdef '_path_files -/ -W $GIT_HOME' go_git gg
 # go_git
 _go_git(){
   _complete_in_folder "$GIT_HOME"

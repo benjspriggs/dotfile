@@ -20,6 +20,7 @@ all=(
 'git/gitconfig'
 'zsh/zshrc'
 )
+
 # move each of the files in the
 # directory to backup files
 # TODO: allow merge between existing files and repo files
