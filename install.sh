@@ -49,7 +49,8 @@ sudo apt-get install -y gitk git-gui zsh
 # install oh-my-zsh
 [[ ! -e ~/.oh-my-zsh ]] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # install pathogen
-[[ ! -e ~/.vim/autoload/pathogen.vim ]] && mkdir -p ~/.vim/autoload ~/.vim/bundle &&
+[[ ! -e ~/.vim/autoload/pathogen.vim ]] &&
+  mkdir -p ~/.vim/autoload ~/.vim/bundle &&
   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 ## VIM
