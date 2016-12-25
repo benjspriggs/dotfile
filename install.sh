@@ -27,8 +27,8 @@ all=(
 DIR=$(pwd)
 
 gh () {
-  [[ ! -e "$2"/"$(basename $1)" ]] || return 1
   default=~/.vim/bundle
+  [[ ! -e "${2-$default}"/"$(basename $1)" ]] || return 1
   git clone https://github.com/"$1" "${2-$default}"/"$(basename $1)"
 }
 
@@ -44,12 +44,10 @@ do
   ln -fns $rep_path $old_path
 done
 
-# install gitk and git-gui
-sudo apt-get install -y gitk git-gui
-# install zsh
-sudo apt-get install -y zsh
+# install gitk and git-gui, zsh
+sudo apt-get install -y gitk git-gui zsh
 # install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+[[ ! -e ~/.oh-my-zsh ]] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # install pathogen
 [[ ! -e ~/.vim/autoload/pathogen.vim ]] && mkdir -p ~/.vim/autoload ~/.vim/bundle &&
   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
