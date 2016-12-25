@@ -28,7 +28,8 @@ DIR=$(pwd)
 
 gh () {
   [[ ! -e "$2"/"$(basename $1)" ]] || return 1
-  git clone https://github.com/"$1" "$2"/"$(basename $1)"
+  default=~/.vim/bundle
+  git clone https://github.com/"$1" "${2-$default}"/"$(basename $1)"
 }
 
 # link and copy files around in home
@@ -54,16 +55,18 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
   curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 ## VIM
-# install vim sline
-gh jpalardy/vim-slime ~/.vim/bundle
+# install vim slime
+gh jpalardy/vim-slime
 # install vim table mode
-gh dhruvasagar/vim-table-mode ~/.vim/bundle
+gh dhruvasagar/vim-table-mode
 # install ccimpl.vim
 gh vim-scripts/ccimpl.vim ~/.vim/plugin
 # install surround.vim
-gh tpope/vim-surround ~/.vim/bundle
+gh tpope/vim-surround
 # install vim-easy-align
-gh junegunn/vim-easy-align ~/.vim/bundle
+gh junegunn/vim-easy-align
+# install vim-fugitive
+gh tpope/vim-fugitive
 
 ## TMUX
 # install tmux-plugin-manager
