@@ -18,6 +18,7 @@ all=(
 'vim/vimrc'
 'tmux/tmux.conf'
 'git/gitconfig'
+'git/gitignore'
 'zsh/zshrc'
 )
 
