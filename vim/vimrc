@@ -58,7 +58,7 @@ endfunction
 
 "greps all TODO items in the directory and displays them
 function TODO()
-    ! grep -nr 'TODO' *
+    ! grep -nr 'TODO' * --exclude=*.swp
 endfunction
 command TODO call TODO()
 
