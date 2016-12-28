@@ -48,7 +48,7 @@ command! -range=% -nargs=0 Tab2Space execute '<line1>,<line2>s#^\t\+#\=repeat(" 
 command! -range=% -nargs=0 Space2Tab execute '<line1>,<line2>s#^\( \{'.&ts.'\}\)\+#\=repeat("\t", len(submatch(0))/' . &ts . ')'
 
 "Sets tab width across the document
-function SetTabSize(size)
+function! SetTabSize(size)
     execute ":silent! Space2Tab"
     let &l:tabstop = a:size
     let &l:shiftwidth = a:size
@@ -57,16 +57,16 @@ function SetTabSize(size)
 endfunction
 
 "greps all TODO items in the directory and displays them
-function TODO()
-    ! grep -nr 'TODO' * --exclude=*.swp
+function! TODO()
+    grep -ir 'TODO' * --exclude=*.swp
 endfunction
-command TODO call TODO()
+command! TODO call TODO()
 
 "Set an alias for SetTabSize, can instead be called with :SetTab 5
 command! -nargs=1 SetTab call s:SetTabSize(<f-args>)
 "Set the spacing to python standard
-command SetPython call SetTabSize(4)
+command! SetPython call SetTabSize(4)
 "Set the spacing to ruby standard
-command SetRuby call SetTabSize(2)
+command! SetRuby call SetTabSize(2)
 "Set the spacing to a more compact
-command SetCompact call SetTabSize(2)
+command! SetCompact call SetTabSize(2)

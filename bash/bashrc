@@ -132,8 +132,7 @@ mkcd () {
 }
 
 go_git () {
-  cd $GIT_HOME
-  cd "$*"
+  cd $GIT_HOME/"$*"
 }
 
 sib () {
