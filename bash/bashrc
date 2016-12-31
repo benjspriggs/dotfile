@@ -207,7 +207,7 @@ complete -F _sib sib
 _go_git(){
   _complete_in_folder "$GIT_HOME"
 }
-complete -F _go_git go_git gg
+complete -F _go_git go_git
 
 # xclip to clipboard function
 xclip-cb () {
