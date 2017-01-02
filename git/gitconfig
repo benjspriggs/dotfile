@@ -4,6 +4,7 @@
 [core]
 	excludesfile = ~/.gitignore
 [alias]
+	g = git
 	st = status
 	visual = !gitk
 	last = log -1 HEAD
