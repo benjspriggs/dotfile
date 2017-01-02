@@ -1,9 +1,10 @@
-"a working-ish vimrc file for Benjamin Spriggs
+" a working-ish vimrc file for Benjamin Spriggs
 
 color desert
-"map leader
+" map leader
 let mapleader = ","
 syntax on
+set wildmenu
 
 "set up tmux slime
 let g:slime_target = "tmux"
