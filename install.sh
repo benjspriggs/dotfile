@@ -14,7 +14,6 @@ fi
 all=( 
 'bash/bashrc'
 'bash/bash_aliases'
-'vim/viminfo'
 'vim/vimrc'
 'tmux/tmux.conf'
 'git/gitconfig'
@@ -57,6 +56,8 @@ sudo apt-get install -y gitk git-gui zsh
 ## VIM
 # install vim slime
 gh jpalardy/vim-slime
+# install simpylfold
+gh tmhedberg/Simpylfold
 # install vim table mode
 gh dhruvasagar/vim-table-mode
 # install ccimpl.vim
