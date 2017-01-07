@@ -32,6 +32,14 @@ gh () {
   git clone https://github.com/"$1" "${2-$default}"/"$(basename $1)"
 }
 
+install-apt () {
+  dpkg -s "$@" > /dev/null || sudo apt-get install "$*"
+}
+
+install-apt-wildcard () {
+  dpkg-query -l "$*" > /dev/null || sudo apt-get install "$*"
+}
+
 # link and copy files around in home
 for f in ${all[@]}
 do
@@ -45,9 +53,13 @@ do
 done
 
 # install gitk and git-gui, zsh
-sudo apt-get install -y gitk git-gui zsh
+# sudo apt-get install -y gitk git-gui zsh
+install-apt gitk git-gui zsh
 # install oh-my-zsh
-[[ ! -e ~/.oh-my-zsh ]] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+[[ ! -e ~/.oh-my-zsh ]] && 
+  sh -c "$(curl -fsSL 
+  https://raw.githubusercontent.com/
+  robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # install pathogen
 [[ ! -e ~/.vim/autoload/pathogen.vim ]] &&
   mkdir -p ~/.vim/autoload ~/.vim/bundle &&
