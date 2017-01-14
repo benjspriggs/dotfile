@@ -258,3 +258,13 @@ strip_prefix() {
     do mv "$file" "${file#"$1"}";
   done
 }
+
+# cleans up control characters
+# in most script usages
+clean_script() {
+  [[ -z "$1" ]] && return 1
+  # courtesy of unixmonkey3987 at:
+  # https://www.commandlinefu.com/commands/view/2318/fix-a-typescript-file-created-by-the-script-program-to-remove-control-characters
+  cat "$1" | perl -pe 's/\e([^\[\]]|\[.*?[a-zA-Z]|\].*?\a)//g' | col -b > "$1-processed"
+  mv "$1-processed" "$1"
+}
