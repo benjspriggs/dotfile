@@ -26,6 +26,7 @@ set hls cul ruler
 set rnu nu
 filetype plugin indent on
 set foldmethod=syntax
+set omnifunc=syntaxcomplete#Complete
 
 "map gT and gt to Shift-Pgup/dn
 noremap <S-PageUp> gT
