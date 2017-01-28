@@ -80,6 +80,8 @@ gh tpope/vim-surround
 gh junegunn/vim-easy-align
 # install vim-fugitive
 gh tpope/vim-fugitive
+# install vim-tex-fold
+gh matze/vim-tex-fold
 
 ## TMUX
 # install tmux-plugin-manager
