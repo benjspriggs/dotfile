@@ -234,17 +234,17 @@ gh () {
     return 1
   fi
 
-  local default_prefix='git@github.com:'
+  local prefix='git@github.com:'
 
   # clone based on arguments
   if [[ -z "$2" ]] && [[ "$1" =~ : ]]; then
-    git clone $default_prefix"$1"
+    git clone $prefix"$1"
   elif [[ ! -z "$2" ]] && [[ ! "$1" =~ : ]]; then
-    git clone https://github.com/"$1"
+    git clone $prefix"$1"
   elif [[ -z "$2" ]] && [[ ! "$1" =~ : ]]; then
-    git clone https://github.com/"$1"
+    git clone $prefix"$1"
   else
-    git clone https://github.com/"$1" "$2"
+    git clone $prefix"$1" "$2"
   fi
 }
 

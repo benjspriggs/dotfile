@@ -86,3 +86,12 @@ gh matze/vim-tex-fold
 ## TMUX
 # install tmux-plugin-manager
 gh tmux-plugins/tpm ~/.tmux/plugins
+# install tmux-save to bin
+gh zsoltf/tmux-save-sessions ~/bin
+if [ ! -e ~/bin/tss ]; then
+  pushd .
+  cd ~/bin
+  ls tmux-save-sessions
+  ln -s tmux-save-sessions/tmux-save-session.sh tss
+  popd
+fi
