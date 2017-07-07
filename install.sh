@@ -3,6 +3,14 @@
 # install the current dotfiles to 
 # the current user's home directory
 
+# we need to set the right vim home prefix
+VIM_PREFIX=''
+if `uname -o` =~ /Msys/; then
+  VIM_PREFIX='vimfiles'
+else
+  VIM_PREFIX='.vim'
+fi
+
 if [[ ! -e ~/paths.sh ]]; then
   echo "#!/bin/bash
   # Make sure GIT_HOME is a fully expanded path
@@ -27,7 +35,7 @@ all=(
 DIR=$(pwd)
 
 gh () {
-  default=~/.vim/bundle
+  default=~/$VIM_PREFIX/bundle
   [[ ! -e "${2-$default}"/"$(basename $1)" ]] || return 1
   git clone https://github.com/"$1" "${2-$default}"/"$(basename $1)"
 }
@@ -61,9 +69,9 @@ install-apt gitk git-gui zsh
   https://raw.githubusercontent.com/
   robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # install pathogen
-[[ ! -e ~/.vim/autoload/pathogen.vim ]] &&
-  mkdir -p ~/.vim/autoload ~/.vim/bundle &&
-  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+[[ ! -e ~/$VIM_PREFIX/autoload/pathogen.vim ]] &&
+  mkdir -p ~/$VIM_PREFIX/autoload ~/$VIM_PREFIX/bundle &&
+  curl -LSso ~/$VIM_PREFIX/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 ## VIM
 # install vim slime
