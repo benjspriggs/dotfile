@@ -72,3 +72,5 @@ command! SetPython call SetTabSize(4)
 command! SetRuby call SetTabSize(2)
 "Set the spacing to a more compact
 command! SetCompact call SetTabSize(2)
+"Format a .json file using the python tools in vim
+command! FormatJSON %!python -m json.tool
