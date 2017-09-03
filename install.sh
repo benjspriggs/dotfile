@@ -72,7 +72,7 @@ done
 
 # install gitk and git-gui, zsh
 # sudo apt-get install -y gitk git-gui zsh
-detect-and-install gitk git-gui zsh
+detect-and-install gitk git-gui zsh curl
 # install oh-my-zsh
 OHMYZSH_INSTALL_LOC=https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
   
