@@ -41,11 +41,21 @@ gh () {
 }
 
 install-apt () {
-  dpkg -s "$@" > /dev/null || sudo apt-get install "$*"
+  dpkg -s $* > /dev/null || sudo apt install -y $*
 }
 
-install-apt-wildcard () {
-  dpkg-query -l "$*" > /dev/null || sudo apt-get install "$*"
+install-yum () {
+  sudo yum install -y $*
+}
+
+detect-and-install () {
+  if [ -f /etc/debian_version ]; then
+    echo "Installing using apt..."
+    install-apt "$*"
+  elif [ -f /etc/redhat-release ]; then
+    echo "Installing using yum..."
+    install-yum "$*"
+  fi
 }
 
 # link and copy files around in home
@@ -61,13 +71,13 @@ do
 done
 
 # install gitk and git-gui, zsh
-# sudo apt-get install -y gitk git-gui zsh
-install-apt gitk git-gui zsh
+detect-and-install gitk git-gui zsh curl vim tmux
+
 # install oh-my-zsh
+OHMYZSH_INSTALL_LOC=https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+  
 [[ ! -e ~/.oh-my-zsh ]] && 
-  sh -c "$(curl -fsSL 
-  https://raw.githubusercontent.com/
-  robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL $OHMYZSH_INSTALL_LOC)"
 # install pathogen
 [[ ! -e ~/$VIM_PREFIX/autoload/pathogen.vim ]] &&
   mkdir -p ~/$VIM_PREFIX/autoload ~/$VIM_PREFIX/bundle &&
