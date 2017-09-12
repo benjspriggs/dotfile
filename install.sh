@@ -90,6 +90,8 @@ gh junegunn/vim-easy-align
 gh tpope/vim-fugitive
 # install vim-tex-fold
 gh matze/vim-tex-fold
+# install vim-yaml
+gh avakhov/vim-yaml
 
 ## TMUX
 # install tmux-plugin-manager
