@@ -8,5 +8,4 @@ alias lc="lazy_commit"
 alias go_grade="echo -e 'Going to grade on the linux host for PSU CS...'; ssh linux -t 'cd grading-folder; bash'" 
 alias supg="sudo apt-get update && sudo apt-get upgrade"
 alias g='git'
-source /usr/share/bash-completion/completions/git
 complete -o default -o nospace -F _git g
