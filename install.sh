@@ -41,21 +41,21 @@ gh () {
 }
 
 install-apt () {
-  dpkg -s $* > /dev/null || sudo apt install -y $*
+dpkg -s $* > /dev/null || sudo apt install -y $*
 }
 
 install-yum () {
-  sudo yum install -y $*
+sudo yum install -y $*
 }
 
 detect-and-install () {
-  if [ -f /etc/debian_version ]; then
-    echo "Installing using apt..."
-    install-apt "$*"
-  elif [ -f /etc/redhat-release ]; then
-    echo "Installing using yum..."
-    install-yum "$*"
-  fi
+if [ -f /etc/debian_version ]; then
+  echo "Installing using apt..."
+  install-apt "$*"
+elif [ -f /etc/redhat-release ]; then
+  echo "Installing using yum..."
+  install-yum "$*"
+fi
 }
 
 # link and copy files around in home
@@ -75,9 +75,9 @@ detect-and-install gitk git-gui zsh curl vim tmux
 
 # install oh-my-zsh
 OHMYZSH_INSTALL_LOC=https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-  
+
 [[ ! -e ~/.oh-my-zsh ]] && 
-  sh -c "$(curl -fsSL $OHMYZSH_INSTALL_LOC)"
+sh -c "$(curl -fsSL $OHMYZSH_INSTALL_LOC)"
 # install pathogen
 [[ ! -e ~/$VIM_PREFIX/autoload/pathogen.vim ]] &&
   mkdir -p ~/$VIM_PREFIX/autoload ~/$VIM_PREFIX/bundle &&
@@ -100,6 +100,10 @@ gh junegunn/vim-easy-align
 gh tpope/vim-fugitive
 # install vim-tex-fold
 gh matze/vim-tex-fold
+# install vim-yaml
+gh avakhov/vim-yaml
+# indentline
+gh Yggdroot/indentLine
 
 ## TMUX
 # install tmux-plugin-manager
