@@ -1,6 +1,6 @@
 [user]
-	name = Benjamin Spriggs
-	email = benjspriggs@sprico.com
+	name = bspriggs
+	email = ben@sprico.com
 [core]
 	excludesfile = ~/.gitignore
 [alias]
