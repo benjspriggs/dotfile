@@ -51,10 +51,10 @@ sudo yum install -y $*
 detect-and-install () {
 if [ -f /etc/debian_version ]; then
   echo "Installing using apt..."
-  install-apt "$*"
+  install-apt "$*" libncurses5-dev
 elif [ -f /etc/redhat-release ]; then
   echo "Installing using yum..."
-  install-yum "$*"
+  install-yum "$*" ncurses-devel
 fi
 }
 
@@ -71,7 +71,7 @@ do
 done
 
 # install gitk and git-gui, zsh
-detect-and-install gitk git-gui zsh curl vim tmux
+detect-and-install gitk git-gui zsh curl vim tmux pkg-config
 
 # install oh-my-zsh
 OHMYZSH_INSTALL_LOC=https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
@@ -115,5 +115,14 @@ if [ ! -e ~/bin/tss ]; then
   cd ~/bin
   ls tmux-save-sessions
   ln -s tmux-save-sessions/tmux-save-session.sh tss
+  popd
+fi
+
+# install progress to bin
+gh Xfennec/progress '~/.local/share'
+if [ ! -e ~/bin/progress ]; then
+  pushd .
+  cd '~/.local/share/progress'
+  sudo make && sudo make install
   popd
 fi
