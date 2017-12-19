@@ -13,8 +13,8 @@ fi
 
 if [[ ! -e ~/paths.sh ]]; then
   echo "#!/bin/bash
-  # Make sure GIT_HOME is a fully expanded path
-  GIT_HOME=\"$path\"" > ~/paths.sh
+# Make sure GIT_HOME is a fully expanded path
+GIT_HOME=\"$path\"" > ~/paths.sh
   vim ~/paths.sh
 fi
 
