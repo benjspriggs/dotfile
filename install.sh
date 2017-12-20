@@ -16,7 +16,6 @@ if [[ ! -e ~/paths.sh ]]; then
 # Make sure GIT_HOME is a fully expanded path
 GIT_HOME=\"$path\"
 BOOSTNOTE_HOME=\"$path\"
-xhost +local:docker
 " > ~/paths.sh
   vim ~/paths.sh
 fi
@@ -30,6 +29,7 @@ all=(
 'git/gitconfig'
 'git/gitignore'
 'zsh/zshrc'
+'xinit/Xclients'
 )
 
 # move each of the files in the
