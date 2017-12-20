@@ -16,6 +16,7 @@ if [[ ! -e ~/paths.sh ]]; then
 # Make sure GIT_HOME is a fully expanded path
 GIT_HOME=\"$path\"
 BOOSTNOTE_HOME=\"$path\"
+xhost +local:docker
 " > ~/paths.sh
   vim ~/paths.sh
 fi
