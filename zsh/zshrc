@@ -228,6 +228,7 @@ strip_prefix() {
 # sync boostnote directory
 sync_boostnote() {
   cd $BOOSTNOTE_HOME
+  git add --all
   git commit -am "Update `date -u`"
   git push origin
   cd -
