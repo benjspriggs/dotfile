@@ -16,6 +16,7 @@ if [[ ! -e ~/paths.sh ]]; then
 # Make sure GIT_HOME is a fully expanded path
 GIT_HOME=\"$path\"
 BOOSTNOTE_HOME=\"$path\"
+eval `keychain --eval id_rsa`
 " > ~/paths.sh
   vim ~/paths.sh
 fi
@@ -74,7 +75,7 @@ do
 done
 
 # install gitk and git-gui, zsh
-detect-and-install gitk git-gui zsh curl vim tmux pkg-config
+detect-and-install keychain zsh curl vim tmux pkg-config
 
 # install oh-my-zsh
 OHMYZSH_INSTALL_LOC=https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
@@ -107,6 +108,8 @@ gh matze/vim-tex-fold
 gh avakhov/vim-yaml
 # indentline
 gh Yggdroot/indentLine
+# vim-go
+gh fatih/vim-go
 
 ## TMUX
 # install tmux-plugin-manager
