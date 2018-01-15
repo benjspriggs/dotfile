@@ -5,19 +5,24 @@
 
 # we need to set the right vim home prefix
 VIM_PREFIX=''
-if `uname -o` =~ /Msys/; then
+if [[ "$(uname -s)" =~ /CYGWIN*/ ]]; then
   VIM_PREFIX='vimfiles'
 else
   VIM_PREFIX='.vim'
 fi
 
+if [ ! -e $HOME/$VIM_PREFIX ]; then
+  echo Creating vim prefix at $HOME/$VIM_PREFIX...
+  mkdir -p $HOME/$VIM_PREFIX
+fi
+
 if [[ ! -e ~/paths.sh ]]; then
   echo "#!/bin/bash
-# Make sure GIT_HOME is a fully expanded path
-GIT_HOME=\"$path\"
-BOOSTNOTE_HOME=\"$path\"
-eval `keychain id_rsa`
-" > ~/paths.sh
+  # Make sure GIT_HOME is a fully expanded path
+  GIT_HOME=\"$path\"
+  BOOSTNOTE_HOME=\"$path\"
+  eval `keychain id_rsa`
+  " > ~/paths.sh
   vim ~/paths.sh
 fi
 
@@ -52,6 +57,18 @@ install-yum () {
 sudo yum install -y $*
 }
 
+install-brew () {
+brew install -y $*
+}
+
+ensure-brew () {
+echo "Ensuring brew is installed on this system..."
+if [ ! -x "$(command -v brew)" ]; then
+  echo "Installing brew..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+}
+
 detect-and-install () {
 if [ -f /etc/debian_version ]; then
   echo "Installing using apt..."
@@ -59,6 +76,10 @@ if [ -f /etc/debian_version ]; then
 elif [ -f /etc/redhat-release ]; then
   echo "Installing using yum..."
   install-yum "$*" ncurses-devel
+elif [ "$(uname -s)" = 'Darwin' ]; then
+  ensure-brew
+  echo "Installing using brew..."
+  install-brew "$*"
 fi
 }
 
