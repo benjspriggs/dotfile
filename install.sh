@@ -53,6 +53,7 @@ sudo yum install -y $*
 
 install-brew () {
 brew install -y $*
+brew cask install iterm2 # install iterm2, for better terminal experience
 }
 
 ensure-brew () {
