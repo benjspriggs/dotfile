@@ -11,18 +11,13 @@ else
   VIM_PREFIX='.vim'
 fi
 
-if [ ! -e $HOME/$VIM_PREFIX ]; then
-  echo Creating vim prefix at $HOME/$VIM_PREFIX...
-  mkdir -p $HOME/$VIM_PREFIX
-fi
-
 if [[ ! -e ~/paths.sh ]]; then
-  echo "#!/bin/bash
-  # Make sure GIT_HOME is a fully expanded path
-  GIT_HOME=\"$path\"
-  BOOSTNOTE_HOME=\"$path\"
-  eval `keychain id_rsa`
-  " > ~/paths.sh
+echo "#!/bin/bash
+# Make sure GIT_HOME is a fully expanded path
+GIT_HOME=\"$path\"
+BOOSTNOTE_HOME=\"$path\"
+eval `keychain id_rsa`
+" > ~/paths.sh
   vim ~/paths.sh
 fi
 
@@ -40,7 +35,6 @@ all=(
 
 # move each of the files in the
 # directory to backup files
-# TODO: allow merge between existing files and repo files
 DIR=$(pwd)
 
 gh () {
@@ -83,6 +77,18 @@ elif [ "$(uname -s)" = 'Darwin' ]; then
 fi
 }
 
+# attempts to mkdir with sudo
+# if we don't have access to home
+# for whatever reason
+smkdir () {
+  mkdir $* || sudo mkdir $*
+}
+
+if [ ! -e $HOME/$VIM_PREFIX ]; then
+  echo Creating vim prefix at $HOME/$VIM_PREFIX...
+  smkdir -p $HOME/$VIM_PREFIX
+fi
+
 # link and copy files around in home
 for f in ${all[@]}
 do
@@ -105,7 +111,7 @@ OHMYZSH_INSTALL_LOC=https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 sh -c "$(curl -fsSL $OHMYZSH_INSTALL_LOC)"
 # install pathogen
 [[ ! -e ~/$VIM_PREFIX/autoload/pathogen.vim ]] &&
-  mkdir -p ~/$VIM_PREFIX/autoload ~/$VIM_PREFIX/bundle &&
+  smkdir -p ~/$VIM_PREFIX/autoload ~/$VIM_PREFIX/bundle &&
   curl -LSso ~/$VIM_PREFIX/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 ## VIM
