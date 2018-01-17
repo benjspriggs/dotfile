@@ -22,8 +22,11 @@ eval `keychain id_rsa`
 fi
 
 if [[ ! -e ~/common.sh ]]; then
+  DIR=$(pwd)
+  pushd .
   cd ~
-  ln -s -t common.sh ~/common.sh
+  ln -s $DIR/common.sh common.sh
+  popd
 fi
 
 
