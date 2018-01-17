@@ -21,6 +21,11 @@ eval `keychain id_rsa`
   vim ~/paths.sh
 fi
 
+if [[ ! -e ~/common.sh ]]; then
+  cd ~
+  ln -s -t common.sh ~/common.sh
+fi
+
 
 all=( 
 'bash/bashrc'
