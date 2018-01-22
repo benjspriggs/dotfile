@@ -66,6 +66,11 @@ wonder () {
 }
 
 # xclip to clipboard function
-xclip-cb () {
+xclip_cb () {
   xclip -selection clipboard -i $@
 }
+
+generate_password() {
+  date | md5sum | head -c 32; echo
+}
+
