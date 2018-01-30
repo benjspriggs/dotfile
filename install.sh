@@ -146,6 +146,10 @@ gh avakhov/vim-yaml
 gh Yggdroot/indentLine
 # vim-go
 gh fatih/vim-go
+# vim-javascript
+gh pangloss/vim-javascript
+# vim-graphql
+gh jparise/vim-graphql
 
 ## TMUX
 # install tmux-plugin-manager
