@@ -170,7 +170,7 @@ gh pangloss/vim-javascript
 # vim-graphql
 gh jparise/vim-graphql
 # vim-js-pretty-template
-gh Quarym/vim-js-pretty-template
+gh Quramy/vim-js-pretty-template
 
 ## TMUX
 # install tmux-plugin-manager
