@@ -71,6 +71,7 @@ need-sudo sudo yum install -y $*
 
 install-brew () {
 brew install -y $*
+brew cask install iterm2 # install iterm2, for better terminal experience
 }
 
 ensure-brew () {
@@ -164,6 +165,10 @@ gh avakhov/vim-yaml
 gh Yggdroot/indentLine
 # vim-go
 gh fatih/vim-go
+# vim-javascript
+gh pangloss/vim-javascript
+# vim-graphql
+gh jparise/vim-graphql
 
 ## TMUX
 # install tmux-plugin-manager
