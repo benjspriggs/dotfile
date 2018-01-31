@@ -11,6 +11,16 @@ else
   VIM_PREFIX='.vim'
 fi
 
+# read command-line args
+if [[ $1 = '--no-sudo' ]]; then
+  HAVE_SUDO=false
+elif sudo -v; then
+  # check we have sudo
+  HAVE_SUDO=true
+else
+  HAVE_SUDO=false
+fi
+
 if [[ ! -e ~/paths.sh ]]; then
 echo "#!/bin/bash
 # Make sure GIT_HOME is a fully expanded path
@@ -52,11 +62,11 @@ gh () {
 }
 
 install-apt () {
-dpkg -s $* > /dev/null || sudo apt install -y $*
+need-sudo dpkg -s $* > /dev/null || sudo apt install -y $*
 }
 
 install-yum () {
-sudo yum install -y $*
+need-sudo sudo yum install -y $*
 }
 
 install-brew () {
@@ -69,6 +79,15 @@ if [ ! -x "$(command -v brew)" ]; then
   echo "Installing brew..."
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
+}
+
+need-sudo() {
+  if [ "$HAVE_SUDO" = false ]; then
+    echo 'This command needs sudo to execute, skipping...'
+    return 1
+  fi
+
+  $@
 }
 
 detect-and-install () {
@@ -89,7 +108,7 @@ fi
 # if we don't have access to home
 # for whatever reason
 smkdir () {
-  mkdir $* || sudo mkdir $*
+  need-sudo mkdir $* || sudo mkdir $*
 }
 
 if [ ! -e $HOME/$VIM_PREFIX ]; then
@@ -164,6 +183,6 @@ gh Xfennec/progress '~/.local/share'
 if [ ! -e ~/bin/progress ]; then
   pushd .
   cd '~/.local/share/progress'
-  sudo make && sudo make install
+  need-sudo sudo make && sudo make install
   popd
 fi
