@@ -74,3 +74,14 @@ generate_password() {
   date | md5sum | head -c 32; echo
 }
 
+# download a site with wget
+wget_slurp() {
+  wget \
+    --recursive \
+    --no-clobber \
+    --page-requisites \
+    --convert-links \
+    --restrict-file-names=windows \
+    --no-parent \
+    $1
+}
