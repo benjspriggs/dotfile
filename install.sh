@@ -171,6 +171,8 @@ gh pangloss/vim-javascript
 gh jparise/vim-graphql
 # vim-js-pretty-template
 gh Quramy/vim-js-pretty-template
+# vim-autoformat
+gh Chiel92/vim-autoformat
 
 ## TMUX
 # install tmux-plugin-manager
