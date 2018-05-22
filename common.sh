@@ -85,3 +85,7 @@ wget_slurp() {
     --no-parent \
     $1
 }
+
+# removing whitespace changes from staging
+# courtesy <https://til.hashrocket.com/posts/696df00135-remove-whitespace-changes-then-git-add-p>
+git diff -w --no-color | git apply --cached --ignore-whitespace && git checkout -- . && git reset && git add -p
