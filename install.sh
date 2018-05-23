@@ -28,7 +28,8 @@ GIT_HOME=\"$path\"
 BOOSTNOTE_HOME=\"$path\"
 eval `keychain id_rsa`
 " > ~/paths.sh
-  vim ~/paths.sh
+  # vim ~/paths.sh
+  echo "Edit ~/paths.sh to set the git and boostnote home directories."
 fi
 
 if [[ ! -e ~/common.sh ]]; then
