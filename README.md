@@ -1,6 +1,13 @@
 # dotfile
-All my dotfiles for keeping them all current on various different machines.
+
+| Travis CI |
+| --- |
+| [![Build Status](https://travis-ci.com/benjspriggs/dotfile.svg?branch=master)](https://travis-ci.com/benjspriggs/dotfile) |
+
+All my dotfiles. For keeping them all current on various different machines.
+
 ## Install
+
 ```sh
 ./install.sh
 ```
